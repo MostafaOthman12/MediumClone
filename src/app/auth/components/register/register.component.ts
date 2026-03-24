@@ -6,13 +6,13 @@ import { AuthStateInterface } from '../../types/authState.interface';
 import { selectCurrentUser, selectIsLoggedIn, selectIsSubmitting, selectValidationErrors } from '../../store/auth.reducer';
 import { CommonModule } from '@angular/common';
 import { combineLatest } from 'rxjs';
-import { BackendErrorMessages } from "../../../shared/components/backend-error-messages/backend-error-messages";
 import { RouterLink } from '@angular/router';
+import { BackendErrorMessages } from '../../../shared/components/backend-error-messages/backend-error-messages';
 @Component({
     selector: 'app-register',
     templateUrl: './register.component.html',
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule, BackendErrorMessages, RouterLink]
+    imports: [ReactiveFormsModule, CommonModule, RouterLink, BackendErrorMessages]
 })
 export class RegisterComponent {
     fb: FormBuilder = inject(FormBuilder);

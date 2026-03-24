@@ -6,9 +6,9 @@ import { CurrentUserInterface, AuthResponseInterface } from "../../shared/types/
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    httpClint: HttpClient = inject(HttpClient);
+    httpClient: HttpClient = inject(HttpClient);
     register(Request: RegisterRequestInterface): Observable<CurrentUserInterface> {
-        return this.httpClint.post<AuthResponseInterface>('http://localhost:3000/api/users', Request)
+        return this.httpClient.post<AuthResponseInterface>('http://localhost:3000/api/users', Request)
             .pipe(map(Response => Response.user));
     }
 }

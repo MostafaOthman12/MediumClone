@@ -3,7 +3,7 @@ import { createEffect } from "@ngrx/effects";
 import { Actions } from "@ngrx/effects";
 import { AuthService } from "../services/auth.service";
 import { ofType } from "@ngrx/effects";
-import { of, switchMap } from "rxjs";
+import { of, exhaustMap } from "rxjs";
 import { map, catchError } from "rxjs";
 import { registerAction } from "./auth.actions";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -15,7 +15,7 @@ export const registerEffect = createEffect((action$ = inject(Actions),
     persistenceService = inject(PersistenceService)) => {
     return action$.pipe(
         ofType(registerAction.register),
-        switchMap(({ request }) => {
+        exhaustMap(({ request }) => {
             return authService.register(request).pipe(
                 map((currentUser) => {
                     persistenceService.set('accessToken', currentUser.token)

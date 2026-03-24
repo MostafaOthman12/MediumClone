@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { BackendErrrorInterface } from '../../types/backendErrror.interface';
+import { Component, input, computed } from '@angular/core';
+import { BackendErrorInterface } from '../../types/backendError.interface';
 
 @Component({
   selector: 'app-backend-error-messages',
@@ -8,10 +8,11 @@ import { BackendErrrorInterface } from '../../types/backendErrror.interface';
   styleUrl: './backend-error-messages.css',
 })
 export class BackendErrorMessages {
-  @Input() backendErrors: BackendErrrorInterface | null = null;
-  errorMessages: string[] = [];
-  ngOnInit(): void {
-    console.log(this.backendErrors);
-    this.errorMessages = Object.values(this.backendErrors || {}).flat();
-  }
+  backendErrors = input<BackendErrorInterface | null>();
+
+  errorMessages = computed(() => {
+    return Object.values(this.backendErrors() || {}).flat();
+  });
+
+
 }

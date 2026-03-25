@@ -11,7 +11,12 @@ export class BackendErrorMessages {
   backendErrors = input<BackendErrorInterface | null>();
 
   errorMessages = computed(() => {
-    return Object.values(this.backendErrors() || {}).flat();
+    const backendErrors = this.backendErrors()?.errors;
+    return !backendErrors ? [] :
+      Object.keys(backendErrors).map((name: string) => {
+        const messages = backendErrors[name].join(' ');
+        return `${name} ${messages}`;
+      });
   });
 
 

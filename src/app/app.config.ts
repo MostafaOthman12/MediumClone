@@ -7,12 +7,14 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authFeatureKey, authReducer } from './auth/store/auth.reducer';
 import { provideEffects } from '@ngrx/effects';
 import * as authEffects from './auth/store/auth.effects';
+import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideRouterStore(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideStore(),
+    provideStore({ router: routerReducer }),
     provideState(authFeatureKey, authReducer),
     provideStoreDevtools({
       maxAge: 25,

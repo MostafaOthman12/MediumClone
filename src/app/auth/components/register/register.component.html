@@ -5,7 +5,7 @@
             <div class="col-md-6 offset-md-3 col-xs-12">
                 <h1 class="text-xs-center">Sign Up</h1>
                 <p class="text-xs-center">
-                    <a routerLink="/login">Have an account?</a>
+                    <a routerLink="/auth/login">Have an account?</a>
                 </p>
                 @if(data.backendErrors) {
                 <app-backend-error-messages [backendErrors]="data.backendErrors"></app-backend-error-messages>

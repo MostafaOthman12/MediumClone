@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, ValidationErrors } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { registerAction } from '../../store/auth.actions';
+import { authActions } from '../../store/auth.actions';
 import { AuthStateInterface } from '../../types/authState.interface';
 import { selectCurrentUser, selectIsLoggedIn, selectIsSubmitting, selectValidationErrors } from '../../store/auth.reducer';
 import { CommonModule } from '@angular/common';
@@ -31,6 +31,6 @@ export class RegisterComponent {
     })
     onSubmit() {
         const request = { user: this.registerForm.getRawValue() }
-        this.store.dispatch(registerAction.register({ request }))
+        this.store.dispatch(authActions.register({ request }))
     }
 }

@@ -7,15 +7,21 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authFeatureKey, authReducer } from './auth/store/auth.reducer';
 import { provideEffects } from '@ngrx/effects';
 import * as authEffects from './auth/store/auth.effects';
+import * as globalFeedEffects from './globalfFeed/store/globalFeed.effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './shared/Services/authInterceptor';
+import { globalFeedFeatureKey, globalFeedReducer } from './globalfFeed/store/globalFeed.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideRouterStore(),
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideStore({ router: routerReducer }),
     provideState(authFeatureKey, authReducer),
+    provideState(globalFeedFeatureKey, globalFeedReducer),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode(),
@@ -23,6 +29,6 @@ export const appConfig: ApplicationConfig = {
       trace: false,
       traceLimit: 75,
     }),
-    provideEffects(authEffects),
+    provideEffects(authEffects, globalFeedEffects),
   ],
 };

@@ -1,0 +1,27 @@
+@if (currentFeeds$ | async; as currentFeeds) {
+  @if (currentFeeds.error) {
+    <app-error-message [message]="currentFeeds.error" />
+  } @else if (currentFeeds.isLoading) {
+    <p>Loading...</p>
+  } @else if (currentFeeds.data; as data) {
+    @for (feed of data.articles; track feed.slug) {
+      <div class="article-preview">
+        <div class="article-meta">
+          <img [src]="feed.author.image" alt="" />
+          <div class="info">
+            <span class="author">{{ feed.author.username }}</span>
+            <span class="date">{{ feed.createdAt }}</span>
+          </div>
+          <button class="btn btn-sm btn-outline-secondary">
+            <i class="ion-heart"></i> {{ feed.favoritesCount }}
+          </button>
+        </div>
+        <div class="article-content">
+          <h1 class="article-title">{{ feed.title }}</h1>
+          <p class="article-description">{{ feed.description }}</p>
+          <a class="article-read-more" [routerLink]="['/globalfeed/', feed.slug]"> Read more... </a>
+        </div>
+      </div>
+    }
+  }
+}

@@ -12,12 +12,11 @@ export class BackendErrorMessages {
 
   errorMessages = computed(() => {
     const backendErrors = this.backendErrors()?.errors;
-    return !backendErrors ? [] :
-      Object.keys(backendErrors).map((name: string) => {
-        const messages = backendErrors[name].join(' ');
-        return `${name} ${messages}`;
-      });
+    return !backendErrors
+      ? []
+      : Object.keys(backendErrors).map((name: string) => {
+          const messages = backendErrors[name].join(' ');
+          return `${name} ${messages}`;
+        });
   });
-
-
 }

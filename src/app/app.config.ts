@@ -10,7 +10,7 @@ import * as authEffects from './auth/store/auth.effects';
 import * as globalFeedEffects from './globalfFeed/store/globalFeed.effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './shared/Services/authInterceptor';
+import { authInterceptor } from './shared/Services/authInterceptor.service';
 import { globalFeedFeatureKey, globalFeedReducer } from './globalfFeed/store/globalFeed.reducer';
 
 export const appConfig: ApplicationConfig = {

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FeedComponent } from '../../shared/components/feed/feed.component';
+import { FeedComponent } from '../../shared/components/feed/components/feed/feed.component';
 import { Store } from '@ngrx/store';
 import { globalFeedAction } from '../store/globalFeed.actions';
 import { globalFeedFeature, globalFeedFeatureKey } from '../store/globalFeed.reducer';

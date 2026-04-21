@@ -23,5 +23,13 @@
         </div>
       </div>
     }
+    @if (data.articlesCount > 0) {
+      <app-pagination
+        [total]="data.articlesCount"
+        [limit]="limit"
+        [currentPage]="currentPage"
+        [url]="baseUrl"
+      />
+    }
   }
 }
